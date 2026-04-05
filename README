@@ -1,1 +1,22 @@
 WELCOME TO MY ATTEMPT AT RELEARNING BOTH C++ AND GIT!
+
+Milestones:
+1) Data Structures required
+2) Pretty print
+3) Given 1 board state create the next (algorithm implementation)
+4) Run until given the command
+5) Improve the interface
+6) Create a save state system
+7) Mess around!
+8) Work on GIT practices
+
+--------IDEATION TRACKER--------
+class board:
+stores the board (a two d array)
+private cell[][] board; // cell isn't neccessary (in theory we could just use bools, but wheres the fun)
+pub void display(){}; //Prints the board
+pub void update(){}; // Updates the board (1 cycle)
+
+class cell:
+private bool alive; // tracks the status of the individual cell
+public void update(){}; // flips the state of the cell
