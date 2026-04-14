@@ -57,7 +57,9 @@ class board{
         int numAlive = 0;
         for(int x=0; x<dimension; ++x){
             for(int y=0; y<dimension; ++y){
-                if(x!=0){}
+                if(x!=0){
+                    
+                }
                 if(x!=dimension-1){}
                 if(y!=0){}
                 if(y!=dimension-1){}
@@ -66,16 +68,12 @@ class board{
                 if(x!=dimension-1 && y!=0){}
                 if(x!=dimension-1 && y!=dimension-1){}
 
-                if(field[x*dimension+y]){
-                    if(numAlive < 2 || numAlive > 3){
-                        //Eventually it will be cell.Update()
-                        field[x*dimension+y]=!field[x*dimension+y];
+                if(field[x*dimension+y] && (numAlive < 2 || numAlive > 3)){
+                    //Eventually it will be cell.Update()
+                    field[x*dimension+y]=!field[x*dimension+y];
                     }
-                }
-                else{
-                    if(numAlive == 3){
-                        field[x*dimension+y]=!field[x*dimension+y];
-                    }
+                else if(!field[x*dimension+y] && (numAlive == 3)){
+                    field[x*dimension+y]=!field[x*dimension+y];
                 }
                 numAlive=0;
             }
