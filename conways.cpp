@@ -57,22 +57,39 @@ class board{
         int numAlive = 0;
         for(int x=0; x<dimension; ++x){
             for(int y=0; y<dimension; ++y){
-                if(x!=0){
-                    
+                // Simple Check, North South West East
+                // I have each if make sure that we won't go over bounds by placing the in the if before checking if alive 
+                if(x!=0 && field[(x-1)*dimension+y]){
+                    numAlive++;
                 }
-                if(x!=dimension-1){}
-                if(y!=0){}
-                if(y!=dimension-1){}
-                if(x!=0 && y!=0){}
-                if(x!=0 && y!=dimension-1){}
-                if(x!=dimension-1 && y!=0){}
-                if(x!=dimension-1 && y!=dimension-1){}
-
+                if(x!=dimension-1 && field[(x+1)*dimension+y]){
+                    numAlive++;
+                }
+                if(y!=0 && field[x*dimension+(y-1)]){
+                    numAlive++;
+                }
+                if(y!=dimension-1 && field[x*dimension+(y+1)]){
+                    numAlive++;
+                }
+                // Diagonal check, NW NE SW SE
+                if(x!=0 && y!=0 && field[(x-1)*dimension+(y-1)]){
+                    numAlive++;
+                }
+                if(x!=0 && y!=dimension-1 && field[(x-1)*dimension+(y+1)]){
+                    numAlive++;
+                }
+                if(x!=dimension-1 && y!=0 && field[(x+1)*dimension+(y-1)]){
+                    numAlive++;
+                }
+                if(x!=dimension-1 && y!=dimension-1 && field[(x+1)*dimension+(y+1)]){
+                    numAlive++;
+                }
+                // NEED TO MAKE A COPY OF FIELD SO CHANGES DON'T IMPACT DOWN THE LINE
                 if(field[x*dimension+y] && (numAlive < 2 || numAlive > 3)){
                     //Eventually it will be cell.Update()
                     field[x*dimension+y]=!field[x*dimension+y];
                     }
-                else if(!field[x*dimension+y] && (numAlive == 3)){
+                if(!field[x*dimension+y] && (numAlive == 3)){
                     field[x*dimension+y]=!field[x*dimension+y];
                 }
                 numAlive=0;
@@ -87,7 +104,13 @@ int main(){
     a.display();
     a.update();
     a.display();
-    board b(10);
+    board b(5);
+    b.display();
+    b.update();
+    cout<<endl;
+    b.display();
+    b.update();
+    cout<<endl;
     b.display();
     return 0;
 }
