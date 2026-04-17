@@ -52,8 +52,15 @@ class board{
             cout<<endl;
         }
     };
-    void update(){
-        //2d for loop that checks enforces the rules
+
+    void update(){        
+        // With the current method I NEED TO DEEP COPY (Function is still O(N^2))
+        bool* backupField = new bool[dimension*dimension];
+        for(int x=0; x<dimension; ++x){
+            for(int y=0; y<dimension; ++y){
+                backupField[x*dimension+y] = field[x*dimension+y];
+            }
+        }
         int numAlive = 0;
         for(int x=0; x<dimension; ++x){
             for(int y=0; y<dimension; ++y){
@@ -87,14 +94,24 @@ class board{
                 // NEED TO MAKE A COPY OF FIELD SO CHANGES DON'T IMPACT DOWN THE LINE
                 if(field[x*dimension+y] && (numAlive < 2 || numAlive > 3)){
                     //Eventually it will be cell.Update()
-                    field[x*dimension+y]=!field[x*dimension+y];
+                    backupField[x*dimension+y]=!field[x*dimension+y];
                     }
                 if(!field[x*dimension+y] && (numAlive == 3)){
-                    field[x*dimension+y]=!field[x*dimension+y];
+                    backupField[x*dimension+y]=!field[x*dimension+y];
                 }
                 numAlive=0;
             }
         }
+        // I wanted to get rid of the pointer so I am ok with taking more time
+        // I am currently working with small fields so it might be an issue later
+        // Why am I doing this, I don't want this function to create a pointer that just floats around
+        // Also feel like there is a risk there
+        for(int x=0; x<dimension; ++x){
+            for(int y=0; y<dimension; ++y){
+                field[x*dimension+y] = backupField[x*dimension+y];
+            }
+        }
+        delete(backupField);
     };
 };
 
