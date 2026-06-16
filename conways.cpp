@@ -129,5 +129,8 @@ int main(){
     b.update();
     cout<<endl;
     b.display();
+    b.update();
+    cout<<endl;
+    b.display();
     return 0;
 }
