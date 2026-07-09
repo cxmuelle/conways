@@ -126,15 +126,19 @@ int main(){
     a.update();
     a.display();
     board b(5);
-    b.display();
-    b.update();
+    int x = 0;
+    // time to learn raylib, because to get the effect I want I think i need to use that 
+    cout<< "Input the number of generations you desire to run:";
+    cin>>x;
     cout<<endl;
-    b.display();
-    b.update();
-    cout<<endl;
-    b.display();
-    b.update();
-    cout<<endl;
-    b.display();
+    while(true){
+        x = --x;
+        if(x==0){
+            break;
+        }
+        b.display();
+        b.update();
+        cout<<endl;   
+    }
     return 0;
 }
