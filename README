@@ -9,7 +9,7 @@ Milestones:
 1) Data Structures required (Currently working, working on a larger update to cell)
 2) Pretty print (Starting this week)
 3) Given 1 board state create the next (algorithm implementation) (DONE)
-4) Run until given the command (Starting this week)
+4) Run until given the command to stop (Starting this week)
 5) Improve the interface ()
 6) Create a save state system ()
 7) Mess around! ()

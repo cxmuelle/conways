@@ -7,23 +7,23 @@ using namespace std;
 class cell{
     private:
     bool alive;
-    string type; //type is added for when there are various types of cells (wall, zombie, etc)
+    char type; //type is added for when there are various types of cells (wall, zombie, etc)
 
     public:
     cell(){
         alive = false;
-        type = 'n'; // n will stand for normal
+        type = 's'; // s will stand for standard
     };
     cell(bool a){
         alive = a;
-        type = 'n'; // n will stand for normal
+        type = 's'; // s will stand for standard
     };
-    cell(bool a, string s){
+    cell(bool a, char s){
         alive = a;
         type = s;
     };
     
-    string getType(){
+    char getType(){
         return this->type;
     };
 
@@ -31,7 +31,12 @@ class cell{
         alive = !alive;
     };
     void display(){ // not needed atm just want to mess around
-        cout<<alive<<endl;
+        if(this->type == 's'){
+            cout<<this->alive;
+        }
+        else{
+            cout<<this->type;
+        }
     };
 };
 
@@ -53,14 +58,19 @@ class board{
         }
     };
 
-    ~board(){ //whenever new, delete what was called
+    ~board(){ 
     };
 
     void display(){
         //2d for loops that prints the board state
         for(int x=0; x<dimension; ++x){
             for(int y=0; y<dimension; ++y){
-                cout<<field[x][y]<<" ";
+                if(field[x][y]){
+                    cout<<"X";
+                }
+                else{
+                    cout<<"0";
+                }
             }
             cout<<endl;
         }
@@ -125,7 +135,7 @@ int main(){
     a.display();
     a.update();
     a.display();
-    board b(5);
+    board b(10);
     int x = 0;
     // time to learn raylib, because to get the effect I want I think i need to use that 
     cout<< "Input the number of generations you desire to run:";
